@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Adams insight LLC</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Adams insight LLC</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Welcome</a></li>
+							<li class="active"><a href="generic.html">AI Playground</a></li>
+							<li><a href="elements.html">Fun Videos</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/company/adams-insight-llc" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/peadams21" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.youtube.com/@AdamsinsightLLC" class="icon brands alt fa-youtube"><span class="label">YouTube</span></a></li>
+                            <li><a href="https://huggingface.co/PeterPinetree" class="icon brands alt fa-huggingface"><img src="images/hf-logo.png" alt="Hugging Face" class="hf-icon"><span class="label">Hugging Face</span></a></li>
+						</ul>
+					</nav>
+
+					<!-- Main -->
+					<div id="main" style="height: 110vh; overflow-y: hidden;">
+						<div id="story-app" class="huggingface-container" style="height: 110vh; width: 100%;">
+							<iframe
+								src="https://peterpinetree-cyoa-adventurebot.hf.space/?view=lite"
+								frameborder="0"
+								width="100%"
+								height="100%"
+								style="border-radius: 8px;">
+							</iframe>
+						</div>
+					</div>
+
+					<!-- Main -->
+					<div id="main" style="height: 100vh; overflow-y: hidden;">
+						<div class="game-header">
+							<h2>The Game of the Frog</h2>
+							<p>Use your computer's arrow keys to play our classic Frogger-inspired game. I'm not sure how you'd play on a phone, honestly. Built with AI code assistants.</p>
+						</div>
+						<div id="frogger-game" style="height: calc(100% - 100px); width: 100%;">
+							<article id="story" class="major special">      
+								<!-- Replace the image with the game canvas -->
+								<canvas id="froggerGame" width="600" height="400"></canvas>
+							</article>
+							<style>
+							.game-header {
+								margin-bottom: 10px;
+								text-align: center;
+							}
+							
+							.game-header h2 {
+								margin-bottom: 5px;
+							}
+							
+							.game-header p {
+								margin-top: 0;
+								margin-bottom: 10px;
+							}
+							
+							#froggerGame {
+								border: 1px solid #000;
+								display: block;
+								margin: 0 auto;
+							}
+							</style>
+							<!-- JavaScript remains unchanged -->
+
+							<script>
+							const canvas = document.getElementById('froggerGame');
+							const ctx = canvas.getContext('2d');
+
+							const frog = {
+								x: canvas.width / 2 - 15,
+								y: canvas.height - 30,
+								width: 30,
+								height: 30,
+								color: 'green',
+								moveLeft: function() { this.x -= 30; },
+								moveRight: function() { this.x += 30; },
+								moveUp: function() { this.y -= 30; },
+								moveDown: function() { this.y += 30; }
+							};
+
+							const cars = [
+								{ x: 0, y: 60, width: 50, height: 30, color: 'red', speed: 2 },
+								{ x: 200, y: 120, width: 50, height: 30, color: 'blue', speed: 3 },
+								{ x: 400, y: 180, width: 50, height: 30, color: 'yellow', speed: 4 }
+							];
+
+							function drawFrog() {
+								ctx.fillStyle = frog.color;
+								ctx.fillRect(frog.x, frog.y, frog.width, frog.height);
+							}
+
+							function drawCars() {
+								cars.forEach(car => {
+									ctx.fillStyle = car.color;
+									ctx.fillRect(car.x, car.y, car.width, car.height);
+									car.x += car.speed;
+									if (car.x > canvas.width) car.x = -car.width;
+								});
+							}
+
+							function checkCollision() {
+								cars.forEach(car => {
+									if (frog.x < car.x + car.width &&
+										frog.x + frog.width > car.x &&
+										frog.y < car.y + car.height &&
+										frog.y + frog.height > car.y) {
+										resetFrog();
+									}
+								});
+							}
+
+							function resetFrog() {
+								frog.x = canvas.width / 2 - 15;
+								frog.y = canvas.height - 30;
+							}
+
+							function update() {
+								ctx.clearRect(0, 0, canvas.width, canvas.height);
+								drawFrog();
+								drawCars();
+								checkCollision();
+								requestAnimationFrame(update);
+							}
+
+							document.addEventListener('keydown', function(event) {
+								if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
+									event.preventDefault(); // Prevent the default scrolling behavior
+								}
+								if (event.key === 'ArrowLeft' && frog.x > 0) frog.moveLeft();
+								if (event.key === 'ArrowRight' && frog.x < canvas.width - frog.width) frog.moveRight();
+								if (event.key === 'ArrowUp' && frog.y > 0) frog.moveUp();
+								if (event.key === 'ArrowDown' && frog.y < canvas.height - frog.height) frog.moveDown();
+							});
+
+							update();
+							</script>
+						</div>
+					</div>	
+					
+												
+					
+					<!-- Footer -->
+					<footer id="footer">
+						<!-- Contact -->
+						<section class="contact">
+							<header class="major">
+							<h2>Get in Touch</h2>
+							<p>If you have any questions or would just like to chat, reach out on LinkedIn >>> <a href="https://www.linkedin.com/in/peter-adams-148303291/" class="icon brands fa-linkedin"></a></p>
+							</header>
+						</section>
+					</footer>
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Adams insight LLC</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
