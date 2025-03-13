@@ -89,30 +89,7 @@ document.addEventListener("keydown", (e) => {
       });
     }
   });  
-// StarCat mobile Controls
-document.getElementById("starcat-up").addEventListener("touchstart", () => moveStarship("up"));
-document.getElementById("starcat-down").addEventListener("touchstart", () => moveStarship("down"));
-document.getElementById("starcat-left").addEventListener("touchstart", () => moveStarship("left"));
-document.getElementById("starcat-right").addEventListener("touchstart", () => moveStarship("right"));
 
-function moveStarship(direction) {
-    if (gameOver) return;
-
-    switch(direction) {
-        case "left":
-            if (player.x > 0) player.x -= player.speed;
-            break;
-        case "right":
-            if (player.x + player.width < starcatCanvas.width) player.x += player.speed;
-            break;
-        case "up":
-            if (player.y > 0) player.y -= player.speed;
-            break;
-        case "down":
-            if (player.y + player.height < starcatCanvas.height) player.y += player.speed;
-            break;
-    }
-}
 function update() {
   // Update hearts
   for (let i = hearts.length - 1; i >= 0; i--) {
