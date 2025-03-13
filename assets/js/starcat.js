@@ -118,12 +118,6 @@ document.addEventListener("DOMContentLoaded", function() {
             player.x = newX;
         }
         
-        if (currentY > player.y + player.height) {
-            player.y += player.speed; // Move down
-        } else if (currentY < player.y) {
-            player.y -= player.speed; // Move up
-        }
-        
         touchStartX = currentX;
     });
 

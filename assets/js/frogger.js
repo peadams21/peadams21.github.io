@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let gameLoopStarted = false;
     let showPasty = false;
     let pastyTimer = 0;
-    let touchSpeedMultiplier = .5; // Touch speed multiplier for deer
+    let touchSpeedMultiplier = 1; // Touch speed multiplier for deer
 
     // Pre-load all images before starting the game
     const imageUrls = {
@@ -49,6 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { x: 250, y: 200, width: 80, height: 50, speed: 3 }, // School bus (medium)
         { x: 500, y: 240, width: 70, height: 40, speed: 5 }  // Sports car (fastest)
     ];
+
+    let keys = {}; // Object to track the state of keys
 
     function loadImage(key, url) {
         return new Promise((resolve, reject) => {
@@ -90,6 +92,32 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
         }
     });
+
+    // Keyboard Controls
+    document.addEventListener("keydown", (e) => {
+        keys[e.key] = true;
+
+        if (gameOver) {
+            // Restart game with 'R' key
+            if (e.key === "r" || e.key === "R") {
+                resetGame();
+                return;
+            }
+        }
+    });
+
+    document.addEventListener("keyup", (e) => {
+        keys[e.key] = false;
+    });
+
+    function updateMovement() {
+        if (keys["ArrowLeft"] && deer.x > 0) deer.x -= deer.speed * touchSpeedMultiplier;
+        if (keys["ArrowRight"] && deer.x < deerCanvas.width - deer.width) deer.x += deer.speed * touchSpeedMultiplier;
+        if (keys["ArrowUp"] && deer.y > 0) deer.y -= deer.speed * touchSpeedMultiplier;
+        if (keys["ArrowDown"] && deer.y < deerCanvas.height - deer.height) deer.y += deer.speed * touchSpeedMultiplier;
+    }
+
+    setInterval(updateMovement, 1000 / 60); // Update movement at 60 FPS
 
     // Mobile touch controls
     deerCanvas.addEventListener('touchstart', function(e) {
@@ -141,49 +169,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         touchStartX = currentX;
         touchStartY = currentY;
-    });
-
-    // Keyboard controls
-    document.addEventListener('keydown', function(e) {
-        if (!deerCanvas || deerCanvas.offsetParent === null) return;
-        
-        if (gameOver) {
-            if (e.key === 'Enter' || e.key === 'r' || e.key === 'R') {
-                resetGame();
-            }
-            return;
-        }
-
-        switch(e.key) {
-            case 'ArrowLeft':
-            case 'a':
-            case 'A':
-                if (deer.x > 0) deer.x -= deer.speed;
-                break;
-            case 'ArrowRight':
-            case 'd':
-            case 'D':
-                if (deer.x + deer.width < deerCanvas.width) deer.x += deer.speed;
-                break;
-            case 'ArrowUp':
-            case 'w':
-            case 'W':
-                if (deer.y > 0) {
-                    deer.y -= deer.speed;
-                }
-                if (deer.y <= 60) {
-                    score += 100;
-                    showPasty = true;
-                    pastyTimer = 120; // Show pasty for 120 frames
-                    resetDeer();
-                }
-                break;
-            case 'ArrowDown':
-            case 's':
-            case 'S':
-                if (deer.y + deer.height < deerCanvas.height) deer.y += deer.speed;
-                break;
-        }
     });
 
     function drawBackground() {
