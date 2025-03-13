@@ -1,3 +1,5 @@
+console.log("✅ StarCat script loaded!");
+
 const starcatCanvas = document.getElementById("starcat-canvas");
 const starcatCtx = starcatCanvas.getContext("2d");
 const images = {
