@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let touchStartX = 0;
     let touchStartY = 0;
     let imagesLoaded = 0;
-    const totalImages = 5; // deer + 3 vehicles + pasty
+    const totalImages = 6; // deer + 3 vehicles + pasty + apple
     let gameLoopStarted = false;
     let showPasty = false;
     let pastyTimer = 0;
@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
         oldTruck: 'images/old_truck.png',
         schoolBus: 'images/school_bus.png',
         sportsCar: 'images/sports_car.png',
-        pasty: 'images/pasty.png'
+        pasty: 'images/pasty.png',
+        apple: 'images/apple.png'
     };
 
     const loadedImages = {};
@@ -51,6 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     let keys = {}; // Object to track the state of keys
+
+    let apples = []; // Array to hold apples
 
     function loadImage(key, url) {
         return new Promise((resolve, reject) => {
@@ -75,7 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
         loadImage('oldTruck', imageUrls.oldTruck),
         loadImage('schoolBus', imageUrls.schoolBus),
         loadImage('sportsCar', imageUrls.sportsCar),
-        loadImage('pasty', imageUrls.pasty)
+        loadImage('pasty', imageUrls.pasty),
+        loadImage('apple', imageUrls.apple)
     ]).then(() => {
         console.log('🎮 All images loaded successfully!');
         loadingIndicator.style.display = 'none';
@@ -251,6 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
         vehicles.forEach(vehicle => {
             vehicle.x = Math.random() * deerCanvas.width;
         });
+        apples = []; // Reset apples
     }
 
     function drawGameOver() {
@@ -265,6 +270,53 @@ document.addEventListener('DOMContentLoaded', function() {
         deerCtx.fillText('Tap screen or press R to restart', deerCanvas.width / 2, deerCanvas.height / 2 + 80);
     }
 
+    function spawnApple() {
+        const apple = {
+            x: deerCanvas.width + 30, // Spawn off-screen to the right
+            y: Math.random() * (deerCanvas.height - 100) + 50, // Random y position, avoiding the top
+            width: 30,
+            height: 30,
+            collected: false // Track if the apple has been collected
+        };
+        apples.push(apple);
+    }
+
+    setInterval(() => {
+        if (!gameOver) {
+            spawnApple(); // Spawn a new apple every few seconds
+        }
+    }, 5000); // Adjust the interval as needed
+
+    function drawApples() {
+        apples.forEach(apple => {
+            if (!apple.collected && loadedImages.apple) {
+                deerCtx.drawImage(loadedImages.apple, apple.x, apple.y, apple.width, apple.height);
+            }
+        });
+    }
+
+    function updateApples() {
+        apples.forEach(apple => {
+            apple.x -= 2; // Adjust this value based on desired speed
+            // Remove apple if it goes off-screen
+            if (apple.x + apple.width < 0) {
+                apple.collected = true; // Mark as collected to remove
+            }
+        });
+    }
+
+    function checkAppleCollision() {
+        apples.forEach(apple => {
+            if (!apple.collected && deer.x < apple.x + apple.width &&
+                deer.x + deer.width > apple.x &&
+                deer.y < apple.y + apple.height &&
+                deer.y + deer.height > apple.y) {
+                apple.collected = true; // Mark apple as collected
+                score += 100; // Increase score
+            }
+        });
+    }
+
     function gameLoop() {
         if (!gameOver) {
             drawBackground();
@@ -272,7 +324,10 @@ document.addEventListener('DOMContentLoaded', function() {
             drawDeer();
             drawScore();
             drawPasty();
+            drawApples();
+            updateApples();
             checkCollisions();
+            checkAppleCollision();
         } else {
             drawGameOver();
         }

@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
             cats = [];
             hearts = [];
             yarnBalls = [];
-            player = { x: 375, y: 450, width: 70, height: 70, speed: 12, touchSpeedMultiplier: 1.5 };
+            player = { x: 375, y: 450, width: 70, height: 70, speed: 12, touchSpeedMultiplier: 2};
             gameOver = false;
         }
     });
