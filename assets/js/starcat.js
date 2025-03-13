@@ -199,6 +199,21 @@ document.addEventListener("DOMContentLoaded", function() {
         starcatCtx.fillStyle = "white";
         starcatCtx.font = "20px Arial";
         starcatCtx.fillText(`Score: ${score}`, 10, 20);
+        
+        // 🔥 **Add "Game Over" screen when gameOver is true**
+        if (gameOver) {
+            starcatCtx.fillStyle = "rgba(0, 0, 0, 0.7)"; // Semi-transparent background
+            starcatCtx.fillRect(0, 0, starcatCanvas.width, starcatCanvas.height);
+    
+            starcatCtx.fillStyle = "white";
+            starcatCtx.font = "36px Arial";
+            starcatCtx.textAlign = "center";
+            starcatCtx.fillText("GAME OVER", starcatCanvas.width / 2, starcatCanvas.height / 2 - 40);
+            starcatCtx.font = "24px Arial";
+            starcatCtx.fillText(`Final Score: ${score}`, starcatCanvas.width / 2, starcatCanvas.height / 2);
+            starcatCtx.font = "18px Arial";
+            starcatCtx.fillText("Press 'R' to restart", starcatCanvas.width / 2, starcatCanvas.height / 2 + 40);
+        }
     }
 
     function gameLoop() {
