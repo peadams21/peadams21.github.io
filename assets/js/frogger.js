@@ -78,33 +78,6 @@
                 break;
         }
     });
-    // Mobile Touch Controls for Deer Game
-    document.getElementById("deer-up").addEventListener("touchstart", () => moveDeer("up"));
-    document.getElementById("deer-down").addEventListener("touchstart", () => moveDeer("down"));
-    document.getElementById("deer-left").addEventListener("touchstart", () => moveDeer("left"));
-    document.getElementById("deer-right").addEventListener("touchstart", () => moveDeer("right"));
-
-    function moveDeer(direction) {
-        if (gameOver) return;
-
-        switch(direction) {
-            case "left": if (deer.x > 0) deer.x -= deer.speed; break;
-            case "right": if (deer.x + deer.width < deerCanvas.width) deer.x += deer.speed; break;
-            case "up":
-                if (deer.y > 0) {
-                    deer.y -= deer.speed;
-                    score += 10;
-                }
-                if (deer.y <= 60) {  
-                    score += 100;
-                    pastyReward = true;
-                    pastyTimer = 120; 
-                    resetDeer();
-                }
-                break;
-            case "down": if (deer.y + deer.height < deerCanvas.height) deer.y += deer.speed; break;
-        }
-    }
     
     function drawBackground() {
       deerCtx.fillStyle = '#2C3E50';
