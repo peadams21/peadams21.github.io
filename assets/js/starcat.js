@@ -168,6 +168,10 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
 
+        if (e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "ArrowUp" || e.key === "ArrowDown") {
+            e.preventDefault(); // Prevent scrolling when using arrow keys
+        }
+
         if (gameOver) {
             // Restart game with 'R' key
             if (e.key === "r" || e.key === "R") {
@@ -175,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 cats = [];
                 hearts = [];
                 yarnBalls = [];
-                player = { x: 375, y: 450, width: 70, height: 70, speed: 20, touchSpeedMultiplier: 2 };
+                player = { x: 375, y: 450, width: 70, height: 70, speed: 12, touchSpeedMultiplier: .5 };
                 gameOver = false;
             }
             return;
