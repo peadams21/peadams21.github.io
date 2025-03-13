@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let gameLoopStarted = false;
     let showPasty = false;
     let pastyTimer = 0;
+    let touchSpeedMultiplier = .5; // Touch speed multiplier for deer
 
     // Pre-load all images before starting the game
     const imageUrls = {
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         y: deerCanvas.height - 70,
         width: 60,
         height: 60,
-        speed: 8
+        speed: 8 * touchSpeedMultiplier // Adjusted speed for deer
     };
 
     const vehicles = [

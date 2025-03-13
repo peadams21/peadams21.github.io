@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    let player = { x: 375, y: 450, width: 70, height: 70, speed: 6, touchSpeedMultiplier: 1};
+    let player = { x: 375, y: 450, width: 70, height: 70, speed: 12, touchSpeedMultiplier: .5};
     let hearts = [];
     let cats = [];
     let yarnBalls = [];
@@ -82,6 +82,8 @@ document.addEventListener("DOMContentLoaded", function() {
         mouthOpenDuration: 30  // frames to keep mouth open when shooting
     };
 
+    let keys = {}; // Object to track the state of keys
+
     // Mobile touch controls
     starcatCanvas.addEventListener('touchstart', function(e) {
         e.preventDefault();
@@ -103,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const touch = e.touches[0];
         const rect = starcatCanvas.getBoundingClientRect();
         const currentX = touch.clientX - rect.left;
+        const currentY = touch.clientY - rect.top;
         
         // Calculate movement with enhanced responsiveness
         const deltaX = currentX - touchStartX;
@@ -113,6 +116,12 @@ document.addEventListener("DOMContentLoaded", function() {
         const newX = player.x + moveAmount;
         if (newX >= 0 && newX + player.width <= starcatCanvas.width) {
             player.x = newX;
+        }
+        
+        if (currentY > player.y + player.height) {
+            player.y += player.speed; // Move down
+        } else if (currentY < player.y) {
+            player.y -= player.speed; // Move up
         }
         
         touchStartX = currentX;
@@ -144,81 +153,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Spawn cats
-    setInterval(() => {
-        if (!gameOver) {
-            cats.push({
-                x: Math.random() * (starcatCanvas.width - 50),
-                y: 0,
-                width: 50,
-                height: 50,
-                speed: 0.5,
-                happy: false
-            });
-        }
-    }, 2000);
-    // Spawn cats
-    setInterval(() => {
-        if (!gameOver) {
-            cats.push({
-                x: Math.random() * (starcatCanvas.width - 50),
-                y: 0,
-                width: 50,
-                height: 50,
-                speed: 0.5,
-                happy: false
-            });
-        }
-    }, 2000);
-
-    // Spawn yarn balls
-    setInterval(() => {
-        if (!gameOver) {
-            yarnBalls.push({
-                x: Math.random() * (starcatCanvas.width - 30),
-                y: 0,
-                width: 30,
-                height: 30,
-                speed: 1.5,
-                rotation: 0,
-                rotationSpeed: (Math.random() * 0.1) - 0.05 // Random rotation for visual interest
-            });
-        }
-    }, 4000);
-    // Spawn yarn balls
-    setInterval(() => {
-        if (!gameOver) {
-            yarnBalls.push({
-                x: Math.random() * (starcatCanvas.width - 30),
-                y: 0,
-                width: 30,
-                height: 30,
-                speed: 1.5,
-                rotation: 0,
-                rotationSpeed: (Math.random() * 0.1) - 0.05 // Random rotation for visual interest
-            });
-        }
-    }, 4000);
-
     // Keyboard Controls
     document.addEventListener("keydown", (e) => {
-        if (gameOver) {
-            // Restart game with 'R' key
-            if (e.key === "r" || e.key === "R") {
-                score = 0;
-                cats = [];
-                hearts = [];
-                yarnBalls = [];
-                player = { x: 375, y: 450, width: 70, height: 70, speed: 12, touchSpeedMultiplier: 1.5 };
-                gameOver = false;
-            }
-            return;
-        }
-
-        if (e.key === "ArrowLeft" && player.x > 0) player.x -= player.speed;
-        if (e.key === "ArrowRight" && player.x < starcatCanvas.width - player.width) player.x += player.speed;
-        if (e.key === "ArrowUp" && player.y > 0) player.y -= player.speed;
-        if (e.key === "ArrowDown" && player.y < starcatCanvas.height - player.height) player.y += player.speed;
+        keys[e.key] = true;
 
         if (e.key === " ") {
             e.preventDefault(); // prevent scrolling
@@ -230,7 +167,89 @@ document.addEventListener("DOMContentLoaded", function() {
                 speed: 5
             });
         }
+
+        if (gameOver) {
+            // Restart game with 'R' key
+            if (e.key === "r" || e.key === "R") {
+                score = 0;
+                cats = [];
+                hearts = [];
+                yarnBalls = [];
+                player = { x: 375, y: 450, width: 70, height: 70, speed: 20, touchSpeedMultiplier: 2 };
+                gameOver = false;
+            }
+            return;
+        }
     });
+
+    document.addEventListener("keyup", (e) => {
+        keys[e.key] = false;
+    });
+
+    function updateMovement() {
+        if (keys["ArrowLeft"] && player.x > 0) player.x -= player.speed;
+        if (keys["ArrowRight"] && player.x < starcatCanvas.width - player.width) player.x += player.speed;
+        if (keys["ArrowUp"] && player.y > 0) player.y -= player.speed;
+        if (keys["ArrowDown"] && player.y < starcatCanvas.height - player.height) player.y += player.speed;
+    }
+
+    setInterval(updateMovement, 1000 / 60); // Update movement at 60 FPS
+
+    // Spawn cats
+    setInterval(() => {
+        if (!gameOver) {
+            cats.push({
+                x: Math.random() * (starcatCanvas.width - 50),
+                y: 0,
+                width: 50,
+                height: 50,
+                speed: 0.5,
+                happy: false
+            });
+        }
+    }, 2000);
+    // Spawn cats
+    setInterval(() => {
+        if (!gameOver) {
+            cats.push({
+                x: Math.random() * (starcatCanvas.width - 50),
+                y: 0,
+                width: 50,
+                height: 50,
+                speed: 0.5,
+                happy: false
+            });
+        }
+    }, 2000);
+
+    // Spawn yarn balls
+    setInterval(() => {
+        if (!gameOver) {
+            yarnBalls.push({
+                x: Math.random() * (starcatCanvas.width - 30),
+                y: 0,
+                width: 30,
+                height: 30,
+                speed: 1.5,
+                rotation: 0,
+                rotationSpeed: (Math.random() * 0.1) - 0.05 // Random rotation for visual interest
+            });
+        }
+    }, 4000);
+    // Spawn yarn balls
+    setInterval(() => {
+        if (!gameOver) {
+            yarnBalls.push({
+                x: Math.random() * (starcatCanvas.width - 30),
+                y: 0,
+                width: 30,
+                height: 30,
+                speed: 1.5,
+                rotation: 0,
+                rotationSpeed: (Math.random() * 0.1) - 0.05 // Random rotation for visual interest
+            });
+        }
+    }, 4000);
 
     function update() {
         // Update hearts
