@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Adams insight LLC</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Adams insight LLC</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Welcome</a></li>
+							<li class="active"><a href="generic.html">AI Playground</a></li>
+							<li><a href="elements.html">Fun Videos</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/company/adams-insight-llc" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/peadams21" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.youtube.com/@AdamsinsightLLC" class="icon brands alt fa-youtube"><span class="label">YouTube</span></a></li>
+                            <li><a href="https://huggingface.co/PeterPinetree" class="icon brands alt fa-huggingface"><img src="images/hf-logo.png" alt="Hugging Face" class="hf-icon"><span class="label">Hugging Face</span></a></li>
+						</ul>
+					</nav>
+
+					<!-- Story App Main -->
+					<div class="main-section" style="height: 110vh; overflow-y: hidden;">
+						<div id="story-app" class="huggingface-container" style="height: 110vh; width: 100%;">
+							<iframe
+								src="https://peterpinetree-cyoa-adventurebot.hf.space/?view=lite"
+								frameborder="0"
+								width="100%"
+								height="100%"
+								style="border-radius: 8px;">
+							</iframe>
+						</div>
+					</div>          
+					<!-- Deer Crossing Main -->
+					<div class="main-section" style="height: 100vh; overflow-y: hidden;">
+						<div class="game-container">
+							<h2>Deer Crossing</h2>
+							<p>Guide a mighty buck across a busy Yooper highway. Use your arrow keys to dodge traffic. Make it to the other side safely, and you'll earn a golden pasty.</p>
+							<canvas id="frogger-canvas" width="800" height="600" tabindex="0"></canvas>
+					
+							<!-- D-pad for mobile controls (Deer Crossing) -->
+							<div class="dpad">
+								<button id="deer-up" class="dpad-button">⬆️</button>
+								<div class="dpad-row">
+									<button id="deer-left" class="dpad-button">⬅️</button>
+									<button id="deer-right" class="dpad-button">➡️</button>
+								</div>
+								<button id="deer-down" class="dpad-button">⬇️</button>
+							</div>
+						</div>
+					</div>
+
+					<!-- StarCat Main -->
+					<div class="main-section" style="height: 100vh; overflow-y: hidden;">
+						<div class="game-container">
+							<h2>StarCat</h2>
+							<p>Blast the sad cats with love to make them happy! Use your arrow keys to move the spaceship and space bar to shoot hearts. Collect yarn balls for bonus points! You'll lose 10 points if sad cats reach the bottom.</p>
+							<canvas id="starcat-canvas" width="800" height="600"></canvas>
+
+							<!-- D-pad for mobile controls (StarCat) -->
+							<div class="dpad">
+								<button id="starcat-up" class="dpad-button">⬆️</button>
+								<div class="dpad-row">
+									<button id="starcat-left" class="dpad-button">⬅️</button>
+									<button id="starcat-right" class="dpad-button">➡️</button>
+								</div>
+								<button id="starcat-down" class="dpad-button">⬇️</button>
+							</div>
+						</div>
+					</div>
+					<!-- Footer -->
+					<footer id="footer">
+						<!-- Contact -->
+						<section class="contact">
+							<header class="major">
+							<h2>Get in Touch</h2>
+							<p>If you have any questions or would just like to chat, reach out on LinkedIn >>> <a href="https://www.linkedin.com/in/peter-adams-148303291/" class="icon brands fa-linkedin"></a></p>
+							</header>
+						</section>
+					</footer>
+					<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Adams insight LLC</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/frogger.js"></script>
+			<script src="assets/js/starcat.js"></script>
+	</body>
+</html>
