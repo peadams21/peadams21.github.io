@@ -117,7 +117,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateMovement() {
         if (keys["ArrowLeft"] && deer.x > 0) deer.x -= deer.speed * touchSpeedMultiplier;
         if (keys["ArrowRight"] && deer.x < deerCanvas.width - deer.width) deer.x += deer.speed * touchSpeedMultiplier;
-        if (keys["ArrowUp"] && deer.y > 0) deer.y -= deer.speed * touchSpeedMultiplier;
+        if (keys["ArrowUp"] && deer.y > 0) {
+            deer.y -= deer.speed * touchSpeedMultiplier;
+            if (deer.y <= 60) {
+                score += 100; // Increase score for crossing the road
+                showPasty = true; // Show reward message
+                pastyTimer = 120; // Show reward message for 120 frames
+                resetDeer(); // Reset deer position after crossing
+            }
+        }
         if (keys["ArrowDown"] && deer.y < deerCanvas.height - deer.height) deer.y += deer.speed * touchSpeedMultiplier;
     }
 

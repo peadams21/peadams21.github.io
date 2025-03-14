@@ -13,12 +13,12 @@
 
 #nav .links li {
     position: relative;
-    background: rgba(255, 255, 255, 0.1);
+    background: white;
     border-radius: 4px 4px 0 0;
 }
 
 #nav .links a {
-    color: rgba(255, 255, 255, 0.9);
+    color: #1e90ff;
     transition: all 0.3s ease;
     position: relative;
     font-weight: 600;
