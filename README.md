@@ -1,10 +1,10 @@
-# Adams Insight LLC Website
+# Adams insight LLC Website
 
-Welcome to the repository for the Adams Insight LLC website. This repository hosts the static files for our company website, showcasing our AI consulting services, portfolio, educational content, and AI-powered games.
+Welcome to the repository for the Adams insight LLC website. This repository hosts the static files for our company website, showcasing our AI consulting services, portfolio, educational content, and AI-powered games.
 
-## About Adams Insight LLC
+## About Adams insight LLC
 
-Adams Insight LLC is an AI consulting company dedicated to helping businesses adopt AI technologies to enhance their efficiency and productivity. Our expertise spans various industries, and we provide tailored solutions to meet the unique needs of each client.
+Adams insight LLC is an AI consulting company dedicated to helping businesses adopt AI technologies to enhance their efficiency and productivity. Our expertise spans various industries, and we provide tailored solutions to meet the unique needs of each client.
 
 ## What You'll Find in This Repository
 
