@@ -12,7 +12,7 @@ Adams insight LLC is an AI consulting company dedicated to helping businesses ad
 A showcase of clients we've helped adopt AI technologies to streamline their operations and achieve better results.
 
 ### Educational Videos
-A collection of educational videos created during our work in China, aimed at spreading knowledge about AI and its applications.
+A collection of educational videos created during my work in China. The STEAM House videos are middle iterations of a final product and have unpolished audio. These videos serve as a portfolio. All rights to these videos are reserved by Kaishu Story in Beijing, China.
 
 ### AI-Powered Games
 Games developed using AI coding assistants and LLM-powered tools, demonstrating the capabilities and creativity that AI can bring to game development.
