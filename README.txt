@@ -1,32 +1,30 @@
-Massively by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+# Adams Insight LLC Website
 
+Welcome to the repository for the Adams Insight LLC website. This repository hosts the static files for our company website, showcasing our AI consulting services, portfolio, educational content, and AI-powered games.
 
-This is Massively, a text-heavy, article-oriented design built around a huge background
-image (with a new parallax implementation I'm testing) and scroll effects (powered by
-Scrollex). A *slight* departure from all the one-pagers I've been doing lately, but one
-that fulfills a few user requests and makes use of some new techniques I've been wanting
-to try out. Enjoy it :)
+## About Adams Insight LLC
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+Adams Insight LLC is an AI consulting company dedicated to helping businesses adopt AI technologies to enhance their efficiency and productivity. Our expertise spans various industries, and we provide tailored solutions to meet the unique needs of each client.
 
-(* = not included)
+## What You'll Find in This Repository
 
-AJ
-aj@lkn.io | @ajlkn
+### Portfolio
+A showcase of clients we've helped adopt AI technologies to streamline their operations and achieve better results.
 
+### Educational Videos
+A collection of educational videos created during our work in China, aimed at spreading knowledge about AI and its applications.
 
-Credits:
+### AI-Powered Games
+Games developed using AI coding assistants and LLM-powered tools, demonstrating the capabilities and creativity that AI can bring to game development.
 
-	Demo Images:
-		Unsplash (unsplash.com)
+## Hosting and Privacy
 
-	Icons:
-		Font Awesome (fontawesome.io)
+While the website is hosted on GitHub Pages, it will be routed through Netlify to ensure the code remains private. Visitors will be redirected to the live site at [adamsinsight.netlify.app](https://adamsinsight.netlify.app/).
 
-	Other:
-		jQuery (jquery.com)
-		Scrollex (github.com/ajlkn/jquery.scrollex)
-		Responsive Tools (github.com/ajlkn/responsive-tools)
+## Contact
+
+For inquiries, please reach out to us at [peterjamesadams at gmail.com](mailto:peterjamesadams at gmail.com).
+
+---
+
+Thank you for visiting our repository. We look forward to helping you harness the power of AI!
